@@ -8,20 +8,31 @@
 
 /* Begin PBXBuildFile section */
 		FC28B5C71E8CD8A7006BC351 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC28B5C61E8CD8A7006BC351 /* AppDelegate.swift */; };
-		FC28B5C91E8CD8A7006BC351 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC28B5C81E8CD8A7006BC351 /* ViewController.swift */; };
 		FC28B5CC1E8CD8A7006BC351 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC28B5CA1E8CD8A7006BC351 /* Main.storyboard */; };
 		FC28B5CE1E8CD8A7006BC351 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FC28B5CD1E8CD8A7006BC351 /* Assets.xcassets */; };
 		FC28B5D11E8CD8A7006BC351 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FC28B5CF1E8CD8A7006BC351 /* LaunchScreen.storyboard */; };
+		FC28B5D91E8CD99C006BC351 /* NowPlayingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC28B5D81E8CD99C006BC351 /* NowPlayingViewController.swift */; };
+		FC28B5DD1E8CDA30006BC351 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC28B5DC1E8CDA30006BC351 /* Alamofire.framework */; };
+		FC28B5E31E8CDF7E006BC351 /* NowPlayingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC28B5E21E8CDF7E006BC351 /* NowPlayingTableViewCell.swift */; };
+		FC28B5E61E8CE019006BC351 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC28B5E51E8CE019006BC351 /* Movie.swift */; };
+		FC28B5EA1E8DB877006BC351 /* NowPlayingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC28B5E91E8DB877006BC351 /* NowPlayingDetailViewController.swift */; };
+		FC28B5EC1E8E0D8F006BC351 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC28B5EB1E8E0D8F006BC351 /* SVProgressHUD.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		FC28B5C31E8CD8A7006BC351 /* Flicks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Flicks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FC28B5C61E8CD8A7006BC351 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		FC28B5C81E8CD8A7006BC351 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FC28B5CB1E8CD8A7006BC351 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FC28B5CD1E8CD8A7006BC351 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FC28B5D01E8CD8A7006BC351 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FC28B5D21E8CD8A7006BC351 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FC28B5D81E8CD99C006BC351 /* NowPlayingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowPlayingViewController.swift; sourceTree = "<group>"; };
+		FC28B5DC1E8CDA30006BC351 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		FC28B5E21E8CDF7E006BC351 /* NowPlayingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowPlayingTableViewCell.swift; sourceTree = "<group>"; };
+		FC28B5E51E8CE019006BC351 /* Movie.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		FC28B5E91E8DB877006BC351 /* NowPlayingDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowPlayingDetailViewController.swift; sourceTree = "<group>"; };
+		FC28B5EB1E8E0D8F006BC351 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
+		FC28B5EE1E8E100B006BC351 /* Flicks-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Flicks-Bridging-Header.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +40,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC28B5DD1E8CDA30006BC351 /* Alamofire.framework in Frameworks */,
+				FC28B5EC1E8E0D8F006BC351 /* SVProgressHUD.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +53,7 @@
 			children = (
 				FC28B5C51E8CD8A7006BC351 /* Flicks */,
 				FC28B5C41E8CD8A7006BC351 /* Products */,
+				FC28B5DB1E8CDA30006BC351 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +68,51 @@
 		FC28B5C51E8CD8A7006BC351 /* Flicks */ = {
 			isa = PBXGroup;
 			children = (
+				FC28B5E41E8CE00C006BC351 /* Models */,
+				FC28B5E11E8CDF6E006BC351 /* Views */,
+				FC28B5DA1E8CD9A6006BC351 /* Controllers */,
 				FC28B5C61E8CD8A7006BC351 /* AppDelegate.swift */,
-				FC28B5C81E8CD8A7006BC351 /* ViewController.swift */,
 				FC28B5CA1E8CD8A7006BC351 /* Main.storyboard */,
 				FC28B5CD1E8CD8A7006BC351 /* Assets.xcassets */,
 				FC28B5CF1E8CD8A7006BC351 /* LaunchScreen.storyboard */,
 				FC28B5D21E8CD8A7006BC351 /* Info.plist */,
+				FC28B5EE1E8E100B006BC351 /* Flicks-Bridging-Header.h */,
 			);
 			path = Flicks;
+			sourceTree = "<group>";
+		};
+		FC28B5DA1E8CD9A6006BC351 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FC28B5D81E8CD99C006BC351 /* NowPlayingViewController.swift */,
+				FC28B5E91E8DB877006BC351 /* NowPlayingDetailViewController.swift */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		FC28B5DB1E8CDA30006BC351 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FC28B5EB1E8E0D8F006BC351 /* SVProgressHUD.framework */,
+				FC28B5DC1E8CDA30006BC351 /* Alamofire.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FC28B5E11E8CDF6E006BC351 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FC28B5E21E8CDF7E006BC351 /* NowPlayingTableViewCell.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		FC28B5E41E8CE00C006BC351 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FC28B5E51E8CE019006BC351 /* Movie.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,6 +125,7 @@
 				FC28B5BF1E8CD8A7006BC351 /* Sources */,
 				FC28B5C01E8CD8A7006BC351 /* Frameworks */,
 				FC28B5C11E8CD8A7006BC351 /* Resources */,
+				FC28B5DE1E8CDA4E006BC351 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -97,6 +149,7 @@
 					FC28B5C21E8CD8A7006BC351 = {
 						CreatedOnToolsVersion = 8.3;
 						DevelopmentTeam = RYGQV6M476;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -132,13 +185,34 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		FC28B5DE1E8CDA4E006BC351 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Alamofire.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/SVProgressHUD.framework",
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		FC28B5BF1E8CD8A7006BC351 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FC28B5C91E8CD8A7006BC351 /* ViewController.swift in Sources */,
+				FC28B5D91E8CD99C006BC351 /* NowPlayingViewController.swift in Sources */,
 				FC28B5C71E8CD8A7006BC351 /* AppDelegate.swift in Sources */,
+				FC28B5E31E8CDF7E006BC351 /* NowPlayingTableViewCell.swift in Sources */,
+				FC28B5E61E8CE019006BC351 /* Movie.swift in Sources */,
+				FC28B5EA1E8DB877006BC351 /* NowPlayingDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,11 +337,18 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = RYGQV6M476;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Flicks/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dancefeetproductions.Flicks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Flicks/Flicks-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -276,11 +357,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = RYGQV6M476;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = Flicks/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.dancefeetproductions.Flicks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Flicks/Flicks-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -304,6 +391,7 @@
 				FC28B5D71E8CD8A7006BC351 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
