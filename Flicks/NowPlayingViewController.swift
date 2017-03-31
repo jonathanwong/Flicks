@@ -27,7 +27,7 @@ class NowPlayingViewController: UIViewController {
         nowPlayingTableView.rowHeight = 150
         
         let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(NowPlayingViewController.getMovies), for: .valueChanged)
+        refreshControl.addTarget(self, action: #selector(NowPlayingViewController.refreshMovies(_:)), for: .valueChanged)
         nowPlayingTableView.insertSubview(refreshControl, at: 0)
     }
     
@@ -80,10 +80,16 @@ class NowPlayingViewController: UIViewController {
             }
             
             SVProgressHUD.dismiss()
-//            if completion != nil {
-//                completion!()
-//            }
+            if completion != nil {
+                completion!()
+            }
         }
+    }
+    
+    func refreshMovies(_ sender: UIRefreshControl) {
+        self.getMovies(completion: {
+            sender.endRefreshing()
+        })
     }
     
     // MARK: - Navigation
