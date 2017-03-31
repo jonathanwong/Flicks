@@ -24,11 +24,14 @@ class NowPlayingDetailViewController: UIViewController {
         let posterPath = currentMovie.value(forKey: "poster_path") as! String
         let url = URL(string: NowPlayingViewController.baseUrl + posterPath)
         self.movie = Movie(title: title, description: overview, imageUrl: url)
-        
+        self.movieImageView.alpha = 0.0
         if url != nil {
             Alamofire.request(url!).responseData(completionHandler: {
                 response in
-                self.movieImageView.image = UIImage(data: response.data!)
+                UIView.animate(withDuration: 0.33, delay: 0.0, options: .curveEaseInOut, animations: {
+                    self.movieImageView.image = UIImage(data: response.data!)
+                    self.movieImageView.alpha = 1.0
+                }, completion: nil)
             })
         }
         

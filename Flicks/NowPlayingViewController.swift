@@ -125,11 +125,15 @@ extension NowPlayingViewController: UITableViewDataSource {
         let url = URL(string: NowPlayingViewController.baseUrl + posterPath)
         let movie = Movie(title: title, description: overview, imageUrl: url)
         cell.movie = movie
+        cell.movieImageView.alpha = 0.0
         
         if url != nil {
             Alamofire.request(url!).responseData(completionHandler: {
                 response in
                 cell.movieImageView.image = UIImage(data: response.data!)
+                UIView.animate(withDuration: 0.33, delay: 0.0, options: .curveEaseInOut, animations: {
+                    cell.movieImageView.alpha = 1.0
+                }, completion: nil)
             })
         }
         
