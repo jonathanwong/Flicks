@@ -17,12 +17,12 @@ The following **required** functionality is completed:
 The following **optional** features are implemented:
 
 - [X] Add a tab bar for **Now Playing** and **Top Rated** movies.
-- [ ] Implement segmented control to switch between list view and grid view.
-- [] Add a search bar.
+- [O] Implement segmented control to switch between list view and grid view. *(used just a plain text bar button item)*
+- [X] Add a search bar.
 - [X] All images fade in.
 - [ ] For the large poster, load the low-res image first, switch to high-res when complete.
 - [ ] Customize the highlight and selection effect of the cell.
-- [ ] Customize the navigation bar.
+- [X] Customize the navigation bar.
 
 The following **additional** features are implemented:
 
@@ -32,13 +32,13 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://i.imgur.com/5qlsWfE.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+I created a searchBar with UISearchController and when I tried to put it in the tableHeaderView with the code I have commented out in viewDidLoad(), it looks fine but after I go to the detail view and then back to the main view, I'd get a crash about constraints and the bottom of the navigation bar and another constraint not sharing the same parent.  I'm not sure why that happened since a lot of the examples I saw online were just putting the searchBar in the tableHeaderView like I did.
 
 ## License
 
