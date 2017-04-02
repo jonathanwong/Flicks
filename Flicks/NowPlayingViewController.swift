@@ -17,6 +17,7 @@ class NowPlayingViewController: UIViewController {
     var endpoint: String?
     var movieResults: [NSDictionary] = []
     static let baseUrl = "https://image.tmdb.org/t/p/w342"
+    static let baseUrlSmall = "https://image.tmdb.org/t/p/w92"
     var selectedMovieDictionary: NSDictionary?
     var networkErrorView: UIView!
     var toggleViewButton: UIBarButtonItem!
@@ -246,6 +247,12 @@ extension NowPlayingViewController: UITableViewDelegate {
         } else {
             selectedMovieDictionary = movieResults[indexPath.row]
         }
+        
+        let cell = tableView.cellForRow(at: indexPath)
+        let backgroundView = UIView(frame: (cell?.contentView.frame)!)
+        backgroundView.layer.cornerRadius = 20.0
+        backgroundView.backgroundColor = UIColor.gray
+        cell?.selectedBackgroundView = backgroundView
         
         tableView.deselectRow(at: indexPath, animated: true)
         performSegue(withIdentifier: "showNowPlayingDetailViewController", sender: self)
