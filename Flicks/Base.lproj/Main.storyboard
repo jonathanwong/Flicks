@@ -78,17 +78,61 @@
                                     <outlet property="delegate" destination="EZz-Yc-cOF" id="VXc-sc-FfA"/>
                                 </connections>
                             </tableView>
+                            <collectionView hidden="YES" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Ggn-6g-jK0">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="16" minimumInteritemSpacing="0.0" id="MWF-GG-1WB">
+                                    <size key="itemSize" width="120" height="129"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MovieCollectionViewCell" id="H8h-ZJ-E4h" customClass="MovieCollectionViewCell" customModule="Flicks" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="120" height="129"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="120" height="129"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="beo-uJ-VoG">
+                                                    <rect key="frame" x="8" y="8" width="104" height="113"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="beo-uJ-VoG" firstAttribute="leading" secondItem="H8h-ZJ-E4h" secondAttribute="leading" constant="8" id="UHe-gN-cSy"/>
+                                            <constraint firstAttribute="bottom" secondItem="beo-uJ-VoG" secondAttribute="bottom" constant="8" id="USB-zp-onk"/>
+                                            <constraint firstItem="beo-uJ-VoG" firstAttribute="top" secondItem="H8h-ZJ-E4h" secondAttribute="top" constant="8" id="V8w-cz-lKb"/>
+                                            <constraint firstAttribute="trailing" secondItem="beo-uJ-VoG" secondAttribute="trailing" constant="8" id="lmv-04-OIR"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="movieImageView" destination="beo-uJ-VoG" id="2oI-CQ-8ny"/>
+                                            <segue destination="M33-qH-9X1" kind="show" identifier="collectionViewToDetail" id="XKu-Xa-45R"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="EZz-Yc-cOF" id="vYU-tr-dtr"/>
+                                    <outlet property="delegate" destination="EZz-Yc-cOF" id="otg-mi-j2T"/>
+                                </connections>
+                            </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="fSI-at-nnz" firstAttribute="top" secondItem="dsg-eC-2No" secondAttribute="bottom" id="4SI-Ea-jB3"/>
+                            <constraint firstItem="Ggn-6g-jK0" firstAttribute="leading" secondItem="3vZ-VW-Lnf" secondAttribute="leading" id="JwV-Dd-kBS"/>
+                            <constraint firstItem="fSI-at-nnz" firstAttribute="top" secondItem="Ggn-6g-jK0" secondAttribute="bottom" id="ObM-kb-wBz"/>
                             <constraint firstAttribute="trailing" secondItem="dsg-eC-2No" secondAttribute="trailing" id="RgC-hG-sqA"/>
                             <constraint firstItem="dsg-eC-2No" firstAttribute="leading" secondItem="3vZ-VW-Lnf" secondAttribute="leading" id="W7r-hM-uSc"/>
+                            <constraint firstItem="Ggn-6g-jK0" firstAttribute="top" secondItem="1m7-lv-GLG" secondAttribute="bottom" id="Yde-cM-AtX"/>
                             <constraint firstItem="dsg-eC-2No" firstAttribute="top" secondItem="3vZ-VW-Lnf" secondAttribute="top" id="nNz-RW-zt1"/>
+                            <constraint firstAttribute="trailing" secondItem="Ggn-6g-jK0" secondAttribute="trailing" id="viW-Cl-5Lh"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Movies" id="TF6-wB-CgE"/>
                     <connections>
+                        <outlet property="nowPlayingCollectionView" destination="Ggn-6g-jK0" id="sTY-O4-ea1"/>
                         <outlet property="nowPlayingTableView" destination="dsg-eC-2No" id="ZPz-UE-wgl"/>
                         <segue destination="M33-qH-9X1" kind="show" identifier="showNowPlayingDetailViewController" id="KlY-2v-Jr9"/>
                     </connections>
@@ -149,4 +193,7 @@
             <point key="canvasLocation" x="576.79999999999995" y="-141.67916041979012"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="XKu-Xa-45R"/>
+    </inferredMetricsTieBreakers>
 </document>

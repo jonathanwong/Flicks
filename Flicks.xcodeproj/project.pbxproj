@@ -17,6 +17,7 @@
 		FC28B5E61E8CE019006BC351 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC28B5E51E8CE019006BC351 /* Movie.swift */; };
 		FC28B5EA1E8DB877006BC351 /* NowPlayingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC28B5E91E8DB877006BC351 /* NowPlayingDetailViewController.swift */; };
 		FC28B5EC1E8E0D8F006BC351 /* SVProgressHUD.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC28B5EB1E8E0D8F006BC351 /* SVProgressHUD.framework */; };
+		FC51E50F1E8F1EBF00C2A525 /* MovieCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC51E50E1E8F1EBF00C2A525 /* MovieCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		FC28B5E91E8DB877006BC351 /* NowPlayingDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowPlayingDetailViewController.swift; sourceTree = "<group>"; };
 		FC28B5EB1E8E0D8F006BC351 /* SVProgressHUD.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SVProgressHUD.framework; path = Carthage/Build/iOS/SVProgressHUD.framework; sourceTree = "<group>"; };
 		FC28B5EE1E8E100B006BC351 /* Flicks-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Flicks-Bridging-Header.h"; sourceTree = "<group>"; };
+		FC51E50E1E8F1EBF00C2A525 /* MovieCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				FC28B5E21E8CDF7E006BC351 /* NowPlayingTableViewCell.swift */,
+				FC51E50E1E8F1EBF00C2A525 /* MovieCollectionViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 				FC28B5D91E8CD99C006BC351 /* NowPlayingViewController.swift in Sources */,
 				FC28B5C71E8CD8A7006BC351 /* AppDelegate.swift in Sources */,
 				FC28B5E31E8CDF7E006BC351 /* NowPlayingTableViewCell.swift in Sources */,
+				FC51E50F1E8F1EBF00C2A525 /* MovieCollectionViewCell.swift in Sources */,
 				FC28B5E61E8CE019006BC351 /* Movie.swift in Sources */,
 				FC28B5EA1E8DB877006BC351 /* NowPlayingDetailViewController.swift in Sources */,
 			);

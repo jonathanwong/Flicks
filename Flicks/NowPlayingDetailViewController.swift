@@ -75,6 +75,7 @@ class NowPlayingDetailViewController: UIViewController {
         let totalRect = CGSize(width: rect.width + titleRect.width + 20, height: rect .height + titleRect.height + 20)
 
         let scrollView = UIScrollView()
+        scrollView.isDirectionalLockEnabled = true
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(scrollView)
         let viewsDictionary: [String: UIView] = ["descriptionView": descriptionView,

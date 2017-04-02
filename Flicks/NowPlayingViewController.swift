@@ -12,12 +12,17 @@ import Alamofire
 class NowPlayingViewController: UIViewController {
 
     @IBOutlet weak var nowPlayingTableView: UITableView!
+    @IBOutlet weak var nowPlayingCollectionView: UICollectionView!
     
     var endpoint: String?
     var movieResults: [NSDictionary] = []
     static let baseUrl = "https://image.tmdb.org/t/p/w342"
     var selectedMovieDictionary: NSDictionary?
     var networkErrorView: UIView!
+    var toggleViewButton: UIBarButtonItem!
+    var isTableVisible = true
+    var filteredMovies: [NSDictionary] = []
+    var searchCtrl: UISearchController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +34,19 @@ class NowPlayingViewController: UIViewController {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(NowPlayingViewController.refreshMovies(_:)), for: .valueChanged)
         nowPlayingTableView.insertSubview(refreshControl, at: 0)
+        
+        toggleViewButton = UIBarButtonItem(title: "Col", style: .plain, target: self, action: #selector(NowPlayingViewController.toggleView(_:)))
+        self.navigationItem.rightBarButtonItem = toggleViewButton
+        
+        let searchController = UISearchController(searchResultsController: nil)
+        searchCtrl = searchController
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = false;
+        searchController.searchBar.searchBarStyle = .minimal
+        navigationItem.titleView = searchController.searchBar
+        definesPresentationContext = true
+//        nowPlayingTableView.tableHeaderView = searchController.searchBar  // not working
     }
     
     override func viewDidLayoutSubviews() {
@@ -50,6 +68,10 @@ class NowPlayingViewController: UIViewController {
         networkErrorView.addSubview(label)
         NSLayoutConstraint(item: label, attribute: .centerX, relatedBy: .equal, toItem: networkErrorView, attribute: .centerX, multiplier: 1, constant: 0.0).isActive = true
         NSLayoutConstraint(item: label, attribute: .centerY, relatedBy: .equal, toItem: networkErrorView, attribute: .centerY, multiplier: 1, constant: 0.0).isActive = true
+        
+        let collectionViewWidth = nowPlayingCollectionView.frame.width / 3
+        let layout = nowPlayingCollectionView.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.itemSize = CGSize(width: collectionViewWidth, height: collectionViewWidth)
     }
 
     override func didReceiveMemoryWarning() {
@@ -73,6 +95,7 @@ class NowPlayingViewController: UIViewController {
                 if let json = data as? NSDictionary {
                     self.movieResults = json["results"] as! [NSDictionary]
                     self.nowPlayingTableView.reloadData()
+                    self.nowPlayingCollectionView.reloadData()
                 }
             case .failure(let error):
                 print(error)
@@ -92,6 +115,42 @@ class NowPlayingViewController: UIViewController {
         })
     }
     
+    func toggleView(_ sender: UIBarButtonItem) {
+        isTableVisible = !isTableVisible
+        
+        if (isTableVisible) {
+            toggleViewButton.title = "Col"
+            
+            self.nowPlayingTableView.isHidden = false
+            UIView.animate(withDuration: 0.33, delay: 0, options: .curveEaseInOut, animations: {
+                self.nowPlayingTableView.alpha = 1.0
+            }, completion: {
+                (value: Bool) in
+                UIView.animate(withDuration: 0.33, delay: 0, options: .curveEaseInOut, animations: {
+                    self.nowPlayingCollectionView.alpha = 0.0
+                }, completion: {
+                    (value: Bool) in
+                    self.nowPlayingCollectionView.isHidden = true
+                })
+            })
+        } else {
+            toggleViewButton.title = "Tab"
+            
+            self.nowPlayingCollectionView.isHidden = false
+            UIView.animate(withDuration: 0.33, delay: 0, options: .curveEaseInOut, animations: {
+                self.nowPlayingCollectionView.alpha = 1.0
+            }, completion: {
+                (value: Bool) in
+                UIView.animate(withDuration: 0.33, delay: 0, options: .curveEaseInOut, animations: {
+                    self.nowPlayingTableView.alpha = 0.0
+                }, completion: {
+                    (value: Bool) in
+                    self.nowPlayingTableView.isHidden = true
+                })
+            })
+        }
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -103,7 +162,27 @@ class NowPlayingViewController: UIViewController {
                 return
             }
             destination.currentMovie = selectedMovieDictionary
+        } else if segue.identifier == "collectionViewToDetail" {
+            if let indexPath = nowPlayingCollectionView!.indexPathsForSelectedItems!.first! as? IndexPath {
+                let destination = segue.destination as! NowPlayingDetailViewController
+                 destination.currentMovie = movieResults[indexPath.row]
+            }
         }
+        
+    }
+    
+    func filterContentForSearchText(searchText: String, scope: String = "All") {
+        filteredMovies = movieResults.filter { movie in
+            return (movie.value(forKey: "title") as! String).lowercased().contains(searchText.lowercased())
+        }
+        
+        nowPlayingTableView.reloadData()
+    }
+}
+
+extension NowPlayingViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchText: searchController.searchBar.text!)
     }
 }
 
@@ -113,12 +192,31 @@ extension NowPlayingViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if searchCtrl.isActive && searchCtrl.searchBar.text != "" {
+            return filteredMovies.count
+        }
         return movieResults.count
+    }
+    
+    func movie(for indexPath: IndexPath) -> Movie {
+        let currentMovie = movieResults[indexPath.row]
+        let title = currentMovie.value(forKey: "title") as! String
+        let overview = currentMovie.value(forKey: "overview") as! String
+        let posterPath = currentMovie.value(forKey: "poster_path") as! String
+        let url = URL(string: NowPlayingViewController.baseUrl + posterPath)
+        let movie = Movie(title: title, description: overview, imageUrl: url)
+        
+        return movie
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NowPlayingTableViewCell", for: indexPath) as! NowPlayingTableViewCell
-        let currentMovie = movieResults[indexPath.row]
+        var currentMovie = NSDictionary()
+        if searchCtrl.isActive && searchCtrl.searchBar.text != "" {
+            currentMovie = filteredMovies[indexPath.row]
+        } else {
+            currentMovie = movieResults[indexPath.row]
+        }
         let title = currentMovie.value(forKey: "title") as! String
         let overview = currentMovie.value(forKey: "overview") as! String
         let posterPath = currentMovie.value(forKey: "poster_path") as! String
@@ -143,9 +241,40 @@ extension NowPlayingViewController: UITableViewDataSource {
 
 extension NowPlayingViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        selectedMovieDictionary = movieResults[indexPath.row]
+        if searchCtrl.isActive && searchCtrl.searchBar.text != "" {
+            selectedMovieDictionary = filteredMovies[indexPath.row]
+        } else {
+            selectedMovieDictionary = movieResults[indexPath.row]
+        }
         
         tableView.deselectRow(at: indexPath, animated: true)
-        performSegue(withIdentifier: "showNowPlayingDetailViewController", sender: tableView.self)
+        performSegue(withIdentifier: "showNowPlayingDetailViewController", sender: self)
+    }
+}
+
+extension NowPlayingViewController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return movieResults.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MovieCollectionViewCell", for: indexPath) as! MovieCollectionViewCell
+        let m = movie(for: indexPath)
+        
+        if m.imageUrl != nil {
+            Alamofire.request(m.imageUrl!).responseData(completionHandler: {
+                response in
+                cell.movieImageView.image = UIImage(data: response.data!)
+                UIView.animate(withDuration: 0.33, delay: 0.0, options: .curveEaseInOut, animations: {
+                    cell.movieImageView.alpha = 1.0
+                }, completion: nil)
+            })
+        }
+        
+        return cell
     }
 }
