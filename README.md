@@ -17,7 +17,7 @@ The following **required** functionality is completed:
 The following **optional** features are implemented:
 
 - [X] Add a tab bar for **Now Playing** and **Top Rated** movies.
-- [O] Implement segmented control to switch between list view and grid view. *(used just a plain text bar button item)*
+- [x] Implement segmented control to switch between list view and grid view. *(used just a plain text bar button item)*
 - [X] Add a search bar.
 - [X] All images fade in.
 - [ ] For the large poster, load the low-res image first, switch to high-res when complete.
